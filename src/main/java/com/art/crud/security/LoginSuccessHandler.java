@@ -1,4 +1,4 @@
-package com.art.crud.config;
+package com.art.crud.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

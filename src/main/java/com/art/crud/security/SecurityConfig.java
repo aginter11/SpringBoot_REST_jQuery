@@ -1,4 +1,4 @@
-package com.art.crud.config;
+package com.art.crud.security;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
