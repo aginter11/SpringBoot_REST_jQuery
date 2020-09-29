@@ -34,11 +34,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable().authorizeRequests()
-                // .antMatchers("/").permitAll()
-                .antMatchers("/admin", "/user").hasRole("ADMIN")
-                .antMatchers("/user").hasRole("USER")
-                .and().formLogin().successHandler(loginSuccessHandler);
+        http.formLogin()
+                .successHandler(loginSuccessHandler)
+                .permitAll();
+
+//        http.csrf().disable().authorizeRequests()
+//                // .antMatchers("/").permitAll()
+//                .antMatchers("/admin", "/user").hasRole("ADMIN")
+//                .antMatchers("/user").hasRole("USER")
+//                .and().formLogin().successHandler(loginSuccessHandler);
 
         http.logout()
                 // разрешаем делать логаут всем
@@ -49,6 +53,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login")
                 //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
                 .and().csrf().disable();
+
+        http
+                // делаем страницу регистрации недоступной для авторизированных пользователей
+                .authorizeRequests()
+                //страницы аутентификаци доступна всем
+                .antMatchers("/login").anonymous()
+                // защищенные URL
+                .antMatchers("/admin/**").access("hasAnyRole('ROLE_ADMIN')")
+                .antMatchers("/user").access("hasAnyRole('ROLE_USER')")
+                .anyRequest().authenticated();
     }
 
     @Bean
