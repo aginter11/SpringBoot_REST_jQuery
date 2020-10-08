@@ -1,6 +1,7 @@
 package com.art.crud.security;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -39,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
 //        http.csrf().disable().authorizeRequests()
-//                // .antMatchers("/").permitAll()
+//                 .antMatchers("/").permitAll();
 //                .antMatchers("/admin", "/user").hasRole("ADMIN")
 //                .antMatchers("/user").hasRole("USER")
 //                .and().formLogin().successHandler(loginSuccessHandler);

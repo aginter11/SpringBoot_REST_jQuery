@@ -50,7 +50,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-user" role="tab"
                        aria-controls="v-pills-user" aria-selected="false">
-                        <div sec:authorize="hasRole('ROLE_USER')">
+                        <div sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')">
                             User
                         </div>
                     </a>
