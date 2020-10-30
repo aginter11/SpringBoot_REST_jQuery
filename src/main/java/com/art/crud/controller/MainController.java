@@ -18,4 +18,11 @@ public class MainController {
         return "admin";
     }
 
+    @GetMapping(value = "/user")
+    public String getUserPage(ModelMap model) {
+        model.addAttribute("userInfo", SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal());
+        return "user";
+    }
+
 }
